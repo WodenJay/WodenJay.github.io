@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Academic CV of Dongjie Wu — research in computer vision, generative models, and medical image enhancement." />
+  <title>Dongjie Wu · Academic CV</title>
+  <style>
+    /* ─────────────────────────────────────────────────────────────────────────
+     * design-systems/claude/tokens.css
+     *
+     * Structured token bindings for "Design System Inspired by Claude (Anthropic)".
+     * Literary salon aesthetic: warm parchment canvas, terracotta accent,
+     * exclusive warm-toned neutrals, Anthropic Serif for all headlines.
+     *
+     * Key brand decisions encoded here:
+     *   - Parchment (#f5f4ed) as page canvas — never pure white
+     *   - Ivory (#faf9f5) for elevated card surfaces
+     *   - Terracotta (#c96442) as the single brand accent — earthy, un-tech
+     *   - All grays carry a yellow-brown undertone — no cool blue-grays
+     *   - Serif for headings, sans for UI — the typographic identity split
+     *   - Ring-based depth (0 0 0 1px) instead of traditional drop shadows
+     *   - Generous body line-height (1.60) for a literary reading experience
+     *   - Focus blue (#3898ec) is the only cool color — accessibility only
+     * ─────────────────────────────────────────────────────────────────── */
+
+    :root {
+      /* ─── Surface (3 levels) ─────────────────────────────────────────
+       * Parchment (bg) → Ivory (surface) → Warm Sand (surface-warm).
+       * Never use pure white as a page background — the warm cream IS
+       * the Claude personality. */
+      --bg: #f5f4ed;
+      --surface: #faf9f5;
+      --surface-warm: #e8e6dc;   /* Warm Sand — button bg, prominent interactive surfaces */
+
+      /* ─── Foreground ramp (4 levels) ────────────────────────────────
+       * Every gray carries a yellow-brown undertone. No cool blue-grays. */
+      --fg: #141413;             /* Anthropic Near Black — warmest "black" in any major tech brand */
+      --fg-2: #3d3d3a;           /* Dark Warm — dark text links, emphasized secondary text */
+      --muted: #5e5d59;          /* Olive Gray — secondary body text */
+      --meta: #87867f;           /* Stone Gray — tertiary text, footnotes, metadata */
+
+      /* ─── Border (2 levels) ──────────────────────────────────────────
+       * Cream-tinted borders — the gentlest possible containment. */
+      --border: #f0eee6;         /* Border Cream — standard light-theme border */
+      --border-soft: #e8e6dc;    /* Border Warm — section dividers, emphasized containment */
+
+      /* ─── Accent ──────────────────────────────────────────────────────
+       * Terracotta Brand — the only chromatic element on most screens.
+       * Used for primary CTA buttons and highest-signal brand moments only. */
+      --accent: #c96442;
+      --accent-on: #faf9f5;      /* Ivory — fg when terracotta is the bg */
+      --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+      --accent-active: color-mix(in oklab, var(--accent), black 14%);
+
+      /* ─── Semantic ────────────────────────────────────────────────────
+       * Error Crimson is a warm, deep red — serious without alarming.
+       * Focus Blue (#3898ec) is the sole cool color in the system,
+       * reserved for accessibility (input focus rings). */
+      --success: #17a34a;
+      --warn: #eab308;
+      --danger: #b53333;         /* Error Crimson — warm red, not standard danger red */
+
+      /* ─── Typography ──────────────────────────────────────────────────
+       * Anthropic Serif (Georgia fallback) for all headlines — the single
+       * weight (500) gives every heading the gravitas of a published title.
+       * Anthropic Sans for all UI/body — quiet functional efficiency. */
+      --font-display: "Anthropic Serif", Georgia, "Times New Roman", serif;
+      --font-body: "Anthropic Sans", "Arial", system-ui, -apple-system, sans-serif;
+      --font-mono: "Anthropic Mono", ui-monospace, "JetBrains Mono", Menlo, monospace;
+
+      /* Type scale — DESIGN.md §3 Typography Rules.
+       * 64px hero → 52px section → 36px sub → 32px card → 25px small */
+      --text-xs: 10px;           /* Overline — uppercase labels at smallest scale */
+      --text-sm: 14px;           /* Caption — metadata, descriptions */
+      --text-base: 16px;         /* Body Standard */
+      --text-lg: 20px;           /* Body Large — intro paragraphs */
+      --text-xl: 25px;           /* Sub-heading Small */
+      --text-2xl: 32px;          /* Sub-heading — card titles, feature names */
+      --text-3xl: 52px;          /* Section Heading */
+      --text-4xl: 64px;          /* Display / Hero — maximum impact, book-title presence */
+
+      --leading-body: 1.6;       /* Relaxed — closer to a book than a dashboard */
+      --leading-tight: 1.1;      /* Tight headings — serif letterforms breathe naturally */
+      --tracking-display: 0em;   /* Serif faces carry authority; no compression needed */
+
+      /* ─── Spacing ─────────────────────────────────────────────────────
+       * 8px base unit per DESIGN.md §5. Card internal padding ~24–32px. */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+
+      --section-y-desktop: 96px; /* Editorial pacing — generous like a magazine spread */
+      --section-y-tablet: 64px;
+      --section-y-phone: 48px;
+
+      /* ─── Radius ──────────────────────────────────────────────────────
+       * Claude's softness: comfortably rounded (8px) for standard,
+       * generously rounded (12px) for primary, very rounded (16px) for
+       * featured containers. No sharp corners — softness is core identity. */
+      --radius-sm: 8px;          /* Comfortably rounded — standard buttons, cards */
+      --radius-md: 12px;         /* Generously rounded — primary buttons, inputs, nav */
+      --radius-lg: 16px;         /* Very rounded — featured containers, video players */
+      --radius-pill: 9999px;     /* Chip-like elements (use sparingly) */
+
+      /* ─── Elevation ───────────────────────────────────────────────────
+       * Ring shadows (0px 0px 0px 1px) instead of drop shadows.
+       * The signature is a border-like halo — shadow pretending to be
+       * a border. Drop shadows only at 0.05 opacity when truly needed. */
+      --elev-flat: none;
+      --elev-ring: 0 0 0 1px var(--border);          /* Border-like halo */
+      --elev-raised: rgba(0, 0, 0, 0.05) 0px 4px 24px; /* Whisper soft — barely visible lift */
+
+      /* ─── Focus ring ──────────────────────────────────────────────────
+       * Focus Blue (#3898ec) is the ONLY cool color in the Claude system.
+       * Reserved exclusively for accessibility / keyboard focus. */
+      --focus-ring: 0 0 0 3px rgba(56, 152, 236, 0.3);
+
+      /* ─── Motion ──────────────────────────────────────────────────────
+       * Short, purposeful transitions. The editorial warmth doesn't need
+       * animation energy — interactions should feel calm. */
+      --motion-fast: 150ms;
+      --motion-base: 200ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+      /* ─── Layout ──────────────────────────────────────────────────────
+       * 1200px container, editorial layout. Hero is centered, feature
+       * sections use 2–3 column card grids. */
+      --container-max: 1200px;
+      --container-gutter-desktop: 24px;
+      --container-gutter-tablet: 16px;
+      --container-gutter-phone: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    p { text-wrap: pretty; }
+    h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 500; text-wrap: balance; }
+    h1 { font-size: clamp(46px, 6vw, var(--text-4xl)); line-height: 1.04; }
+    h2 { font-size: clamp(36px, 4vw, var(--text-3xl)); line-height: var(--leading-tight); }
+    h3 { font-size: var(--text-xl); line-height: 1.25; }
+    sup { font-size: 0.65em; }
+    ::selection { background: var(--surface-warm); color: var(--fg); }
+
+    .skip-link { position: fixed; left: var(--space-4); top: -60px; z-index: 50; padding: var(--space-3) var(--space-4); background: var(--fg); color: var(--surface); border-radius: var(--radius-sm); transition: top var(--motion-base) var(--ease-standard); }
+    .skip-link:focus { top: var(--space-4); }
+    :focus-visible { outline: 0; box-shadow: var(--focus-ring); }
+    .container { width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-gutter-desktop); }
+    .section { padding-block: var(--section-y-desktop); }
+    .section + .section { border-top: 1px solid var(--border-soft); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+    .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-12); align-items: start; }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+    .stack { display: flex; flex-direction: column; }
+    .meta, .section-label, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+    .meta { color: var(--meta); font-size: var(--text-sm); }
+    .section-label { margin: 0 0 var(--space-5); color: var(--meta); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; }
+    .lead { margin: 0; max-width: 60ch; color: var(--muted); font-size: var(--text-lg); line-height: var(--leading-body); }
+
+    .topnav { position: sticky; top: 0; z-index: 20; background: color-mix(in oklch, var(--bg) 90%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .topnav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
+    .logo { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; }
+    .topnav nav { display: flex; align-items: center; gap: var(--space-8); margin-left: auto; }
+    .topnav nav a { position: relative; color: var(--muted); font-size: var(--text-sm); transition: color var(--motion-fast) var(--ease-standard); }
+    .topnav nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 1px; background: var(--fg); transition: right var(--motion-base) var(--ease-standard); }
+    .topnav nav a:hover, .topnav nav a[aria-current="true"] { color: var(--fg); }
+    .topnav nav a:hover::after, .topnav nav a[aria-current="true"]::after { right: 0; }
+
+    .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: 10px var(--space-4); border: 1px solid transparent; border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 500; transition: transform var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--accent); color: var(--accent-on); box-shadow: 0 0 0 1px var(--accent); }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: var(--elev-raised); }
+    .btn-secondary { background: var(--surface); color: var(--fg); border-color: var(--border-soft); box-shadow: var(--elev-ring); }
+    .btn-secondary:hover { border-color: var(--fg-2); }
+    .btn-ghost { padding-inline: var(--space-2); color: var(--fg-2); }
+    .btn-arrow::after { content: "↗"; transition: transform var(--motion-fast) var(--ease-standard); }
+    .btn-arrow:hover::after { transform: translate(2px, -2px); }
+
+    .hero { position: relative; min-height: calc(100vh - 72px); display: grid; align-items: center; padding-block: clamp(88px, 12vw, 160px); }
+    .hero-center { max-width: 920px; margin-inline: auto; text-align: center; }
+    .eyebrow { margin: 0 0 var(--space-6); color: var(--accent); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .14em; text-transform: uppercase; }
+    .hero h1 { max-width: 14ch; margin-inline: auto; }
+    .hero .lead { max-width: 52ch; margin: var(--space-6) auto 0; }
+    .hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+    .hero-note { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-8); color: var(--meta); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .08em; text-transform: uppercase; }
+    .hero-note::before { content: ""; width: 28px; height: 1px; background: var(--border-soft); }
+
+    .stat { border-top: 1px solid var(--fg); padding-top: var(--space-6); }
+    .stat-num { font-family: var(--font-display); font-size: clamp(48px, 7vw, 84px); line-height: .95; letter-spacing: -.04em; }
+    .stat-label { max-width: 28ch; margin: var(--space-3) 0 0; color: var(--muted); font-size: var(--text-sm); }
+
+    .section-head { max-width: 700px; margin-bottom: var(--space-12); }
+    .section-head .lead { margin-top: var(--space-5); }
+    .publication-list { border-bottom: 1px solid var(--border-soft); }
+    .log-row { display: grid; grid-template-columns: 118px minmax(0, 1fr) 150px; gap: var(--space-8); align-items: start; padding: var(--space-8) 0; border-top: 1px solid var(--border-soft); }
+    .log-row h3 { font-size: var(--text-xl); }
+    .log-row p { margin: var(--space-3) 0 0; color: var(--muted); }
+    .log-row .pull { text-align: right; }
+    .paper-link { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-4); border-bottom: 1px solid var(--fg); font-size: var(--text-sm); }
+    .paper-link:hover { color: var(--muted); border-bottom-color: var(--muted); }
+
+    .research-entry { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: var(--space-12); padding: var(--space-12) 0; border-top: 1px solid var(--border-soft); }
+    .research-entry:first-of-type { border-top-color: var(--fg); }
+    .research-entry h3 { max-width: 30ch; }
+    .research-entry ul { margin: var(--space-5) 0 0; padding-left: 1.15em; color: var(--muted); }
+    .research-entry li + li { margin-top: var(--space-3); }
+    .research-entry strong { color: var(--fg); font-weight: 600; }
+    .research-meta { position: sticky; top: 104px; }
+    .research-meta p { margin: 0; }
+    .research-meta p + p { margin-top: var(--space-2); }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-8); box-shadow: var(--elev-ring); }
+    .education-card h3 { font-size: var(--text-2xl); }
+    .education-card .lead { margin-top: var(--space-3); font-size: var(--text-base); }
+    .education-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-8); }
+    .fact { padding-top: var(--space-4); border-top: 1px solid var(--border-soft); }
+    .fact strong { display: block; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; }
+    .fact span { color: var(--muted); font-size: var(--text-sm); }
+    .course-list { margin: var(--space-6) 0 0; padding: 0; list-style: none; }
+    .course-list li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) 0; border-top: 1px solid var(--border); color: var(--muted); }
+    .course-list .num { color: var(--fg); }
+    .awards-list { margin: 0; padding: 0; list-style: none; }
+    .awards-list li { padding: var(--space-5) 0; border-top: 1px solid var(--border-soft); }
+    .awards-list li:first-child { border-top-color: var(--fg); }
+    .award-title { display: block; font-family: var(--font-display); font-size: var(--text-lg); }
+    .award-meta { display: block; margin-top: var(--space-1); color: var(--meta); font-size: var(--text-sm); }
+
+    .cta { text-align: center; }
+    .cta h2 { max-width: 16ch; margin-inline: auto; }
+    .cta .lead { margin: var(--space-5) auto var(--space-8); }
+    .pagefoot { padding-block: var(--space-8); border-top: 1px solid var(--border-soft); color: var(--muted); font-size: var(--text-sm); }
+    .pagefoot a { border-bottom: 1px solid var(--border-soft); }
+    .pagefoot a:hover { color: var(--fg); border-color: var(--fg); }
+
+    .motion-ready .reveal { opacity: 0; transform: translateY(26px); transition: opacity 700ms var(--ease-standard), transform 700ms var(--ease-standard); }
+    .motion-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .motion-ready .hero .reveal:nth-child(2) { transition-delay: 80ms; }
+    .motion-ready .hero .reveal:nth-child(3) { transition-delay: 150ms; }
+    .motion-ready .hero .reveal:nth-child(4) { transition-delay: 220ms; }
+    .motion-ready .hero .reveal:nth-child(5) { transition-delay: 290ms; }
+
+    @media (max-width: 920px) {
+      .container { padding-inline: var(--container-gutter-tablet); }
+      .section { padding-block: var(--section-y-tablet); }
+      .grid-3, .grid-2-1, .research-entry, .education-facts { grid-template-columns: 1fr; }
+      .topnav nav { display: none; }
+      .hero { min-height: auto; }
+      .log-row { grid-template-columns: 88px minmax(0, 1fr); gap: var(--space-5); }
+      .log-row .pull { grid-column: 2; text-align: left; }
+      .research-entry { gap: var(--space-5); }
+      .research-meta { position: static; }
+    }
+    @media (max-width: 560px) {
+      .container { padding-inline: var(--container-gutter-phone); }
+      .section { padding-block: var(--section-y-phone); }
+      .topnav-inner { min-height: 64px; }
+      .topnav .btn { padding-inline: var(--space-3); }
+      .log-row { grid-template-columns: 1fr; }
+      .log-row .pull { grid-column: 1; }
+      .row-between { align-items: flex-start; flex-direction: column; }
+      .pagefoot .row-between { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .motion-ready .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script>document.documentElement.classList.add('motion-ready');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="topnav" data-od-id="topnav">
+    <div class="container topnav-inner">
+      <a class="logo" href="#top" aria-label="Dongjie Wu, back to top">Dongjie Wu</a>
+      <nav aria-label="Primary navigation">
+        <a href="#publications">Publications</a>
+        <a href="#research">Research</a>
+        <a href="#education">Education</a>
+        <a href="mailto:wodenjay@gmail.com">Email</a>
+      </nav>
+      <a class="btn btn-primary" href="assets/Dongjie-Wu-CV.pdf" download="Dongjie-Wu-CV.pdf" data-od-id="nav-download-cv">Download CV <span aria-hidden="true">↓</span></a>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="section hero" id="top" data-od-id="hero">
+      <div class="container hero-center">
+        <p class="eyebrow reveal">Computer Vision · Generative Models · Image Enhancement</p>
+        <h1 class="reveal">Researching faithful medical image restoration.</h1>
+        <p class="lead reveal">I am Dongjie Wu, a Computer Science undergraduate at Central South University developing controllable and anatomically faithful methods for fundus image enhancement.</p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-secondary" href="#publications">Explore my research</a>
+          <a class="btn btn-ghost btn-arrow" href="mailto:wodenjay@gmail.com">Start a conversation</a>
+        </div>
+        <p class="hero-note reveal">B.E. candidate · Central South University · 2027</p>
+      </div>
+    </section>
+
+    <section class="section" id="highlights" data-od-id="research-highlights">
+      <div class="container reveal">
+        <p class="section-label">Research at a glance</p>
+        <div class="grid-3">
+          <div class="stat">
+            <div class="stat-num num">+4.13<span style="font-size:.45em; margin-left:4px;">dB</span></div>
+            <p class="stat-label">PSNR over MDA-Net, alongside consistent gains across structural and perceptual metrics.</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">24</div>
+            <p class="stat-label">public datasets integrated into a reproducible degradation, training, and benchmarking pipeline.</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">~20K</div>
+            <p class="stat-label">retinal cases curated for the Global RETFound Consortium’s Hunan ophthalmic cohort.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="publications" data-od-id="publications">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-label">Selected output</p>
+          <h2>Publications and intellectual property</h2>
+          <p class="lead">Work spanning frequency-aware restoration, controllable diffusion, and degradation-aware fundus enhancement.</p>
+        </div>
+        <div class="publication-list">
+          <article class="log-row reveal" data-od-id="publication-wavede">
+            <span class="meta num">2026</span>
+            <div>
+              <h3>WaveDE: Wavelet-Routed Dual-Expert Network for Fundus Photograph Enhancement</h3>
+              <p>Haitao Nie<sup>*</sup>, <strong>Dongjie Wu<sup>*</sup></strong>, and Bin Xie<sup>✉</sup>. Accepted at <em>MICCAI 2026</em>. Equal contribution.</p>
+              <a class="paper-link" href="https://github.com/WodenJay/WaveDE" target="_blank" rel="noreferrer">View code <span aria-hidden="true">↗</span></a>
+            </div>
+            <span class="pull meta">MICCAI · Paper</span>
+          </article>
+          <article class="log-row reveal" data-od-id="publication-region-aware-diffusion">
+            <span class="meta num">In prep.</span>
+            <div>
+              <h3>Controllable Region-Aware Diffusion for High-Fidelity Fundus Enhancement</h3>
+              <p>Haitao Nie<sup>*</sup>, <strong>Dongjie Wu<sup>*</sup></strong>, Bin Xie<sup>✉</sup>, et al. Manuscript in preparation; target journal: <em>Nature Medicine Intelligence</em>.</p>
+            </div>
+            <span class="pull meta">Manuscript</span>
+          </article>
+          <article class="log-row reveal" data-od-id="publication-patent">
+            <span class="meta num">2026</span>
+            <div>
+              <h3>Degradation-Aware Fundus Image Quality Enhancement Method, System, Device, and Medium</h3>
+              <p>Bin Xie, Yiran Dai, <strong>Dongjie Wu</strong>, and Haitao Nie. China patent application CN 202610656256.0.</p>
+            </div>
+            <span class="pull meta">Patent · China</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="research" data-od-id="research-experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-label">Research experience</p>
+          <h2>From restoration methods to clinical evaluation</h2>
+          <p class="lead">Four projects connecting model design, reproducible benchmarking, data curation, and medical AI safety.</p>
+        </div>
+
+        <article class="research-entry reveal" data-od-id="research-region-aware-diffusion">
+          <aside class="research-meta">
+            <p class="meta num">Sep 2025 — Present</p>
+            <p class="meta">Prof. Bin Xie<br />Prof. Jing Luo</p>
+          </aside>
+          <div>
+            <h3>Controllable Region-Aware Diffusion for High-Fidelity Fundus Enhancement</h3>
+            <ul>
+              <li>Proposed a controllable region-aware diffusion framework that restores clinician-specified regions while preserving non-selected areas, addressing precise enhancement with minimal hallucination.</li>
+              <li>Achieved <strong>+4.13 dB PSNR</strong> over MDA-Net with consistent gains on SSIM, LPIPS, VIF, and Haralick; outperformed 12 recent baselines across in-domain and OOD settings.</li>
+              <li>Built an end-to-end pipeline for compound degradation modeling, training, and benchmarking across <strong>24 public datasets</strong>, supporting a manuscript currently in preparation.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-entry reveal" data-od-id="research-wavede">
+          <aside class="research-meta">
+            <p class="meta num">Nov 2025 — Feb 2026</p>
+            <p class="meta">Prof. Bin Xie</p>
+          </aside>
+          <div>
+            <h3>WaveDE: Wavelet-Routed Dual-Expert Network</h3>
+            <ul>
+              <li>Designed a wavelet-routed dual-expert architecture with frequency-aware routing to resolve the optimization conflict between high-frequency detail and low-frequency color and illumination.</li>
+              <li>Improved detail recovery through HF-injected VAE decoding and enforced structural fidelity through anatomical consistency regularization.</li>
+              <li>Reached <strong>state-of-the-art PSNR and SSIM</strong> among 12 methods from leading venues, with downstream gains that led to a <strong>MICCAI 2026</strong> publication.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-entry reveal" data-od-id="research-retfound">
+          <aside class="research-meta">
+            <p class="meta num">Jul 2025 — Sep 2025</p>
+            <p class="meta">Prof. Bin Xie<br />Prof. Jing Luo</p>
+          </aside>
+          <div>
+            <h3>Global RETFound: Hunan Ophthalmic Data Curation</h3>
+            <ul>
+              <li>Built a model-ready Hunan ophthalmic cohort from the Second Xiangya Hospital for the Global RETFound Consortium.</li>
+              <li>Curated approximately <strong>20,000 retinal cases</strong> through acquisition, cleaning, metadata standardization, image–text alignment, and quality control.</li>
+              <li>Covered clinically relevant variables including demographics, camera type, diabetic retinopathy, AMD, glaucoma, hypertension, and diabetes.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-entry reveal" data-od-id="research-med-vlm">
+          <aside class="research-meta">
+            <p class="meta num">Sep 2024 — Aug 2025</p>
+            <p class="meta">Prof. Bin Xie</p>
+          </aside>
+          <div>
+            <h3>Medical VLM Benchmarking for Robustness and Safety</h3>
+            <ul>
+              <li>Developed a multidimensional Med-VLM benchmark spanning accuracy, robustness, fairness, and risk aversion under clinical uncertainty and distribution shifts.</li>
+              <li>Built LLM-assisted label-verification and safety-evaluation workflows for medical descriptors and Chinese LLM jailbreak benchmarking.</li>
+            </ul>
+            <a class="paper-link" href="https://consummatewebsite.vercel.app" target="_blank" rel="noreferrer">Open project demo <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="education" data-od-id="education-and-awards">
+      <div class="container grid-2-1">
+        <div class="card education-card reveal" data-od-id="education-card">
+          <p class="section-label">Education</p>
+          <h3>Central South University</h3>
+          <p class="lead">Bachelor of Engineering in Computer Science and Technology · Double First-Class Initiative · Project 985</p>
+          <p class="meta num" style="margin:16px 0 0;">Sep 2023 — Jun 2027</p>
+          <div class="education-facts">
+            <div class="fact">
+              <strong class="num">88.21</strong>
+              <span>GPA out of 100</span>
+            </div>
+            <div class="fact">
+              <strong class="num">2×</strong>
+              <span>Annual Scholarship</span>
+            </div>
+            <div class="fact">
+              <strong class="num">95</strong>
+              <span>Machine Learning</span>
+            </div>
+          </div>
+          <ul class="course-list" aria-label="Selected coursework">
+            <li><span>Digital Image Processing</span><span class="num">94 / 100</span></li>
+            <li><span>Machine Learning</span><span class="num">95 / 100</span></li>
+            <li><span>Artificial Intelligence</span><span class="num">89 / 100</span></li>
+          </ul>
+        </div>
+
+        <div class="reveal">
+          <p class="section-label">Awards & certifications</p>
+          <ul class="awards-list">
+            <li>
+              <span class="award-title">National Finalist</span>
+              <span class="award-meta">11th National Undergraduate Biomedical Engineering Innovation Design Competition</span>
+            </li>
+            <li>
+              <span class="award-title">CCF-CSP · 270 points</span>
+              <span class="award-meta">2025 Software Talent Certification · Top 11% nationwide</span>
+            </li>
+            <li>
+              <span class="award-title">National Third Prize</span>
+              <span class="award-meta">China College Student Computer Design Competition</span>
+            </li>
+            <li>
+              <span class="award-title">Third Prize · AIGC Innovation</span>
+              <span class="award-meta">China Collegiate Computing Competition</span>
+            </li>
+            <li>
+              <span class="award-title">Annual Scholarship</span>
+              <span class="award-meta">2023–2024 and 2024–2025</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" data-od-id="contact-and-cv">
+      <div class="container reveal" style="max-width:700px;">
+        <p class="section-label">Connect</p>
+        <h2>Let’s discuss faithful medical AI.</h2>
+        <p class="lead">I welcome conversations about research collaboration, graduate study, and computer vision for healthcare.</p>
+        <div class="hero-cta">
+          <a class="btn btn-secondary" href="mailto:wodenjay@gmail.com">Email Dongjie</a>
+          <a class="btn btn-ghost" href="assets/Dongjie-Wu-CV.pdf" download="Dongjie-Wu-CV.pdf">Download full CV <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pagefoot" data-od-id="footer">
+    <div class="container row-between">
+      <span>© 2026 Dongjie Wu · Academic CV</span>
+      <span class="meta"><a href="mailto:wodenjay@gmail.com">wodenjay@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const revealItems = [...document.querySelectorAll('.reveal')];
+      const sections = [...document.querySelectorAll('main section[id]')];
+      const navLinks = [...document.querySelectorAll('.topnav nav a[href^="#"]')];
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        revealItems.forEach((item) => revealObserver.observe(item));
+
+        const navObserver = new IntersectionObserver((entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          navLinks.forEach((link) => {
+            const active = link.getAttribute('href') === `#${visible.target.id}`;
+            if (active) link.setAttribute('aria-current', 'true');
+            else link.removeAttribute('aria-current');
+          });
+        }, { rootMargin: '-25% 0px -60% 0px', threshold: [0.01, 0.25] });
+        sections.forEach((section) => navObserver.observe(section));
+      } else {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+      }
+    })();
+  </script>
+</body>
+</html>

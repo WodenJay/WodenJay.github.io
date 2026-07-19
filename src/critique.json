@@ -1,0 +1,26 @@
+{
+  "kind": "critique-panel",
+  "score": 4.4,
+  "axes": {
+    "clarity": {
+      "score": 5,
+      "notes": "The page opens with a concise research thesis, then moves from evidence to publications, projects, education, and contact."
+    },
+    "hierarchy": {
+      "score": 5,
+      "notes": "Research output is visually dominant; real metrics and publication rows provide strong scanning anchors without competing cards."
+    },
+    "typography": {
+      "score": 4,
+      "notes": "Serif display type and relaxed sans body copy follow the Claude editorial system with readable desktop-first scaling."
+    },
+    "motion": {
+      "score": 4,
+      "notes": "A single calm reveal system, active navigation, and reduced-motion support create polish without distracting from academic content."
+    },
+    "brand": {
+      "score": 4,
+      "notes": "Parchment surfaces, warm neutrals, restrained terracotta, ring depth, and generous pacing remain consistent throughout."
+    }
+  }
+}
