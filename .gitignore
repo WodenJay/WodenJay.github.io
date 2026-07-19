@@ -2,3 +2,7 @@
 .claude
 skills-lock.json
 .superpowers
+.hallmark
+.playwright-cli
+*-desktop.png
+*-mobile.png
